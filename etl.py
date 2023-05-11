@@ -15,6 +15,22 @@ os.environ['AWS_SECRET_ACCESS_KEY']=config['AWS_SECRET_ACCESS_KEY']
 
 
 def create_spark_session():
+    """
+    Creates a new SparkSession with the required configuration.
+
+    Returns:
+    -------
+    spark : SparkSession
+        A SparkSession object with the required configuration.
+
+    Raises:
+    ------
+    None
+
+    Examples:
+    --------
+    >>> spark = create_spark_session()
+    """
     spark = SparkSession \
         .builder \
         .config("spark.jars.packages", "org.apache.hadoop:hadoop-aws:2.7.0") \
@@ -23,6 +39,19 @@ def create_spark_session():
 
 
 def process_song_data(spark, input_data, output_data):
+    """
+    Extract song data from input_data, transform it into a songs table and an artists table using Spark, 
+    and write the tables to output_data in Parquet format. 
+
+    Args:
+    spark (SparkSession): A SparkSession object
+    input_data (str): The file path for the input data
+    output_data (str): The file path to write the output data
+
+    Returns:
+    None
+    """
+
     # get filepath to song data file
     song_data = "s3://udacity-dend/song_data"
     
@@ -45,6 +74,18 @@ def process_song_data(spark, input_data, output_data):
 
 
 def process_log_data(spark, input_data, output_data):
+    """
+    Processes log data and writes results to parquet files.
+
+    Args:
+        spark: SparkSession object.
+        input_data (str): Path to input data.
+        output_data (str): Path to output data.
+
+    Returns:
+        None
+    """
+
     # get filepath to log data file
     log_data = "s3://udacity-dend/log_data/"
 
@@ -116,6 +157,18 @@ def process_log_data(spark, input_data, output_data):
 
 
 def main():
+    """
+    This function orchestrates the ETL process for the Sparkify music streaming app data. 
+    It creates a Spark session and sets the input and output data locations in an S3 bucket.
+    Then, it processes the song data and log data using separate functions, and saves the results
+    in the specified output location.
+
+    Parameters:
+    None
+
+    Returns:
+    None
+    """
     spark = create_spark_session()
     input_data = "s3a://udacity-dend/"
     output_data = "s3a://udacity-p4-data-lake-output/"

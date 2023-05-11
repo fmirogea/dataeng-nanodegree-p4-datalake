@@ -9,6 +9,7 @@ from pyspark.sql.functions import udf, col, from_unixtime, year, month, dayofmon
 config = configparser.ConfigParser()
 config.read('dl.cfg')
 
+
 os.environ['AWS_ACCESS_KEY_ID']=config['AWS_ACCESS_KEY_ID']
 os.environ['AWS_SECRET_ACCESS_KEY']=config['AWS_SECRET_ACCESS_KEY']
 

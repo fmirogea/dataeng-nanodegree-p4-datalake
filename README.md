@@ -3,21 +3,21 @@ This is Project 4: Data Lake, part of Udacity's Nanodegree in Data Engineering.
 
 ## Project Description
 
-In this project we are building an ETL pipeline that extracts data from S3, processes it using Spark, and loads the data back into S3 as a set of dimensional tables 
+The current endeavor involves constructing an ETL pipeline which involves extracting data from S3, applying Spark to process it, and then reloading the processed data as a collection of dimensional tables back into S3.
 
 ## Architecture Overview
 
-The architecture of this project is defined as follows.
-- The ETL code is writen in Python and executed in an EMR Cluster.
-- For the Development a Jupyter Notebook connected to the EMR Cluster was used. The Jupyter Notebook itself is stored in S3 and backed-up in GitHub.
-- The Data Lake is a set of log Files (in csv format) and analytics tables (in parquet format)
+This project's structure is outlined as follows:
+- Python is used to write the ETL code, which is then run on an EMR Cluster.
+- During development, a Jupyter Notebook connected to the EMR Cluster was utilized. This Notebook is stored in S3 and backed up on GitHub.
+- The Data Lake is comprised of log files in CSV format and analytics tables in Parquet format.
 
 ![Architecture Overview](/media/Project4_DataLake-Architecture.drawio.png)
 
 
 ## Project files and running the project
 
-Once started an EMR Cluster, you can run the project either using a Jupyter Notebook or by submitting the python code.
+After launching an EMR Cluster, you have the option of executing your project through either a Jupyter Notebook or by submitting the Python code
 
 ### Using the Jupyter Notebooks
 - In the AWS Console look for Notebooks in EMR.
@@ -38,7 +38,7 @@ You can monitor the progress of the job using the EMR console or the YARN Resour
 Once the job is complete, you can verify the output in the S3 bucket or any other location that you have specified in the script.
 
 ## Costs 
-
+The cost of an EMR Cluster is determined by the number of nodes used. In this project, a Cluster consisting of three instances (one master and two core nodes) of type m5.xlarge (with 4vCPU and 16 GB RAM) was utilized for development purposes. The cost for this setup in the USA West (Oregon) region was approximately 0.576 USD per hour at the time of the project's implementation.
 
 ## File descriptions
 Different files and folders can be found in the repository::

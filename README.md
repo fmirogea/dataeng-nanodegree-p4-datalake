@@ -27,15 +27,10 @@ After launching an EMR Cluster, you have the option of executing your project th
 
 ### Submitting the Python code
 
-- Connect to your EMR cluster using SSH.
-- Navigate to the directory where your etl.py script is located.
-- Run the following command to submit the script to the EMR cluster:
-    spark-submit etl.py
-    This command will execute the etl.py script using Spark on the EMR cluster.
-
-You can monitor the progress of the job using the EMR console or the YARN Resource Manager UI.
-
-Once the job is complete, you can verify the output in the S3 bucket or any other location that you have specified in the script.
+- Connect to your EMR cluster using SSH. Follow the instructions [here](https://catalog.us-east-1.prod.workshops.aws/workshops/c86bd131-f6bf-4e8f-b798-58fd450d3c44/en-US/cluster_creation/ssh). I faced a challenge where I was unable to modify the permissions of the `.pem` key as it was located in a Windows folder that kept overwriting the permissions. To solve this issue, I moved the file to the WSL2 domain.
+- Follow the instructions [here](https://catalog.us-east-1.prod.workshops.aws/workshops/c86bd131-f6bf-4e8f-b798-58fd450d3c44/en-US/spark-etl/cli) to execute the etl.py code from the CLI by using `spark-submit etl.py`. This command will execute the etl.py script using Spark on the EMR cluster.
+- You can monitor the progress of the job using the EMR console or the YARN Resource Manager UI.
+- Once the job is complete, you can verify the output in the S3 bucket.
 
 ## Costs 
 The cost of an EMR Cluster is determined by the number of nodes used. In this project, a Cluster consisting of three instances (one master and two core nodes) of type m5.xlarge (with 4vCPU and 16 GB RAM) was utilized for development purposes. The cost for this setup in the USA West (Oregon) region was approximately 0.576 USD per hour at the time of the project's implementation.

@@ -3,16 +3,16 @@ from datetime import datetime
 import os
 import uuid
 from pyspark.sql import SparkSession
-from pyspark.sql.types import IntegerType, TimestampType, StringType
+from pyspark.sql.types import StructType, StructField, StringType, DoubleType, LongType, TimestampType
 from pyspark.sql.functions import udf, col, from_unixtime, year, month, dayofmonth, hour, weekofyear, dayofweek, date_format
 
 config = configparser.ConfigParser()
 config.read('dl.cfg')
 
-
+### LEAVE COMMENTED WHEN EXECUTING FROM THE EMR MASTER NODE ###
 os.environ['AWS_ACCESS_KEY_ID']=config['AWS_ACCESS_KEY_ID']
 os.environ['AWS_SECRET_ACCESS_KEY']=config['AWS_SECRET_ACCESS_KEY']
-
+######
 
 def create_spark_session():
     """

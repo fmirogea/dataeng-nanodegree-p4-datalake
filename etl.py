@@ -53,10 +53,23 @@ def process_song_data(spark, input_data, output_data):
     """
 
     # get filepath to song data file
-    song_data = "s3://udacity-dend/song_data"
+    song_data = "s3a://udacity-dend/song_data"
     
     # read song data file
-    df = spark.read.json(song_data + "/*/*/*/*.json")
+    schema = StructType([
+        StructField("artist_id", StringType(), False),
+        StructField("artist_latitude", DoubleType(), True),
+        StructField("artist_location", StringType(), True),
+        StructField("artist_longitude", DoubleType(), True),
+        StructField("artist_name", StringType(), True),
+        StructField("duration", DoubleType(), True),
+        StructField("num_songs", LongType(), True),
+        StructField("song_id", StringType(), False),
+        StructField("title", StringType(), False),
+        StructField("year", LongType(), True)
+    ])
+
+    df = spark.read.json(song_data + "/*/*/*/*.json", schema=schema)
 
     # extract columns to create songs table
     songs_col = ['song_id', 'title', 'artist_id', 'year', 'duration']
@@ -87,10 +100,31 @@ def process_log_data(spark, input_data, output_data):
     """
 
     # get filepath to log data file
-    log_data = "s3://udacity-dend/log_data/"
+    log_data = "s3a://udacity-dend/log_data/"
 
     # read log data file
-    df = spark.read.json(log_data + "/*/*/*.json") 
+    schema = StructType([
+        StructField("artist", StringType(), True),
+        StructField("auth", StringType(), True),
+        StructField("firstName", StringType(), True),
+        StructField("gender", StringType(), True),
+        StructField("itemInSession", LongType(), True),
+        StructField("lastName", StringType(), True),
+        StructField("length", DoubleType(), True),
+        StructField("level", StringType(), True),
+        StructField("location", StringType(), True),
+        StructField("method", StringType(), True),
+        StructField("page", StringType(), True),
+        StructField("registration", DoubleType(), True),
+        StructField("sessionId", LongType(), False),
+        StructField("song", StringType(), False),
+        StructField("status", LongType(), True),
+        StructField("ts", LongType(), False),
+        StructField("userAgent", StringType(), True),
+        StructField("userId", StringType(), True)
+    ])
+
+    df = spark.read.json(log_data + "/*/*/*.json", schema = schema) 
     
     # filter by actions for song plays
     df = df[df["page"] == "NextSong"]
